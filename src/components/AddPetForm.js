@@ -19,7 +19,7 @@ const AddPetForm = ({ addPet }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="add-pet-form">
+        <form onSubmit={handleSubmit}>
             <input name="nombre" value={newPet.nombre} onChange={handleInputChange} placeholder="Nombre" />
             <input name="raza" value={newPet.raza} onChange={handleInputChange} placeholder="Raza" />
             <input name="edad" value={newPet.edad} onChange={handleInputChange} placeholder="Edad" />

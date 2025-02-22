@@ -1,19 +1,33 @@
-.pet-list {
-    text-align: center;
+/* PetList.css */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1.2em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.pet-item {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
 }
 
-.pet-name, .pet-breed, .pet-age {
-    flex: 1;
-    text-align: center;
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
 }

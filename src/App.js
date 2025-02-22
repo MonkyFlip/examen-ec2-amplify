@@ -1,38 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import PetList from './components/PetList';
-import AddPetForm from './components/AddPetForm';
+
+const initialPets = [
+    { nombre: 'Fido', raza: 'Labrador', edad: 3 },
+    { nombre: 'Milo', raza: 'Beagle', edad: 2 },
+    { nombre: 'Bella', raza: 'Bulldog', edad: 4 },
+    { nombre: 'Luna', raza: 'Poodle', edad: 1 },
+    { nombre: 'Max', raza: 'Golden Retriever', edad: 5 },
+    { nombre: 'Daisy', raza: 'Boxer', edad: 3 },
+    { nombre: 'Rocky', raza: 'German Shepherd', edad: 6 },
+    { nombre: 'Zoe', raza: 'Yorkshire Terrier', edad: 2 },
+    { nombre: 'Charlie', raza: 'Shih Tzu', edad: 4 },
+    { nombre: 'Ruby', raza: 'Border Collie', edad: 7 }
+];
 
 function App() {
-    const [pets, setPets] = useState([]);
+    const [pets, setPets] = useState(initialPets);
     const [filter, setFilter] = useState('');
-
-    useEffect(() => {
-        const getPets = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/pets');
-                setPets(response.data);
-            } catch (error) {
-                console.error('Error fetching pets:', error);
-            }
-        };
-        getPets();
-    }, []);
-
-    const addPet = async (pet) => {
-        try {
-            const response = await axios.post('http://localhost:5000/pets', pet);
-            setPets([...pets, response.data]);
-        } catch (error) {
-            console.error('Error adding pet:', error);
-        }
-    };
 
     const handleFilterChange = (e) => {
         setFilter(e.target.value);
     };
 
-    const filteredPets = pets.filter(pet => pet.raza.toLowerCase().includes(filter.toLowerCase()));
+    const filteredPets = pets.filter(pet => 
+        pet.raza.toLowerCase().includes(filter.toLowerCase()) ||
+        pet.nombre.toLowerCase().includes(filter.toLowerCase()) ||
+        pet.edad.toString().includes(filter)
+    );
 
     return (
         <div className="App">
@@ -40,12 +34,11 @@ function App() {
                 <h1>Pet Management App</h1>
                 <input
                     type="text"
-                    placeholder="Filtrar por raza"
+                    //aceholder="Filtrar por nombre, raza o edad"
                     value={filter}
                     onChange={handleFilterChange}
                     style={{ marginBottom: '20px', padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}
                 />
-                <AddPetForm addPet={addPet} />
                 <PetList pets={filteredPets} />
             </header>
         </div>
