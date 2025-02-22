@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/pets';
+// Usa la URL de tu instancia EC2 en producción
+const API_URL = 'http://18.224.60.105:5000/api/pets';
 
 export const fetchPets = async () => {
     try {
